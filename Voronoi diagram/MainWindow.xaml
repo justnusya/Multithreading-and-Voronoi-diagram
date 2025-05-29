@@ -5,24 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Voronoi_diagram"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Voronoi Diagram" Height="550" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Для кнопок -->
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <!-- Для canvas -->
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="White" Margin="20" Height="30">
-            <Button Content="Випадково:" Click="GenerateRandomPoints_Click" Margin="60,0,0,0" Width="130"/>
-            <TextBox Name="DotAmount" TextAlignment="Center" VerticalContentAlignment="Center" Width="70" Margin="20,0,0,0"/>
-            <Button Content="Однопоточний режим" Click="SingleThreaded_Click" Margin="50,0,0,0"/>
-            <Button Content="Багатопоточний режим" Click="MultiThreaded_Click" Margin="100,0,0,0"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="White" Margin="10" Height="40">
+            <Button Content="Generate Random" Click="GenerateRandomPoints_Click" Width="120" Margin="5"/>
+            <TextBox Name="DotAmount" Text="50" TextAlignment="Center" VerticalContentAlignment="Center" Width="50" Margin="5"/>
+            <Button Content="Single-threaded" Click="SingleThreaded_Click" Width="120" Margin="5"/>
+            <Button Content="Multi-threaded" Click="MultiThreaded_Click" Width="120" Margin="5"/>
+            <ComboBox Name="MetricComboBox" Width="150" Margin="5" SelectionChanged="MetricComboBox_SelectionChanged">
+                <ComboBoxItem Content="Euclidean Distance" IsSelected="True"/>
+                <ComboBoxItem Content="Manhattan Distance"/>
+            </ComboBox>
         </StackPanel>
 
-        <Canvas Grid.Row="1" Name="canvas" Background="White"
-            MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
-            MouseRightButtonDown="Canvas_MouseRightButtonDown"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <TextBlock Name="PerformanceInfo" FontSize="12" FontWeight="Bold"/>
+        </StackPanel>
+
+        <Canvas Grid.Row="2" Name="canvas" Background="White"
+        MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
+        MouseRightButtonDown="Canvas_MouseRightButtonDown" 
+        Width="900" Height="450"/>
     </Grid>
 </Window>
